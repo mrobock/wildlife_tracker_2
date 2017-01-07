@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Animal listing(s)</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Latin name</th>
+      <th>Kingdom</th>
+      <th class="stupid_buttons"></th>
+    </tr>
+  </thead>
+
+  <tbody id="animal_tbody">
+    <% @animals.each do |animal| %>
+      <tr>
+        <td><%= animal.name %></td>
+        <td><%= animal.latin_name %></td>
+        <td><%= animal.kingdom %></td>
+        <td><%= link_to 'Show', animal %> |
+        <%= link_to 'Edit', edit_animal_path(animal) %> |
+        <%= link_to 'Destroy', animal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<hr>
+<div>
+  <input type="text" id="animal_name" placeholder="Name"/>
+  <input type="text" id="animal_latin_name" placeholder="Latin Name"/>
+  <input type="text" id="animal_kingdom" placeholder="Kingdom"/>
+  <button type="button" id="add_new_animal">Add New Animal</button>
+</div>
+<%= link_to 'New Animal', new_animal_path, class: "btn btn-default" %>

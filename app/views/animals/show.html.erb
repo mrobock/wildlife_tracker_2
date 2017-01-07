@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @animal.name %>
+</p>
+
+<p>
+  <strong>Latin name:</strong>
+  <%= @animal.latin_name %>
+</p>
+
+<p>
+  <strong>Kingdom:</strong>
+  <%= @animal.kingdom %>
+</p>
+
+<%= link_to 'Edit', edit_animal_path(@animal) %> |
+<%= link_to 'Back', animals_path %>
+
+<div>
+  <%= select_date Date.today, prefix: :start_date %>
+  <%= select_time Time.now, prefix: :start_time %>
+</div>
+
+
+<table class="table">
+  <thead>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+  </thead>
+  <tbody id="sightings_list">
+    <% @animal.sightings.each do |sighting| %>
+      <tr>
+        <td><%= sighting.date %></td>
+        <td><%= sighting.time %></td>
+        <td><%= sighting.latitude %></td>
+        <td><%= sighting.longitude %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

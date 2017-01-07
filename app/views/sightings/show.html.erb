@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @sighting.date %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @sighting.time %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @sighting.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @sighting.longitude %>
+</p>
+
+<p>
+  <strong>Animal:</strong>
+  <%= @sighting.animal %>
+</p>
+
+<%= link_to 'Edit', edit_sighting_path(@sighting) %> |
+<%= link_to 'Back', sightings_path %>
