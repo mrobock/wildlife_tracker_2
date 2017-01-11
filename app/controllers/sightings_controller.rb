@@ -1,12 +1,12 @@
 class SightingsController < ApplicationController
   before_action :set_sighting, only: [:show, :edit, :update, :destroy]
-  before_action :animals_for_select, only: [:new, :edit]
+  before_action :animals_for_select, only: [:new, :edit, :index]
 
 
   # GET /sightings
   # GET /sightings.json
   def index
-    @sightings = Sighting.all
+    @sightings = Sighting.all.order(:id)
   end
 
   # GET /sightings/1
@@ -21,6 +21,15 @@ class SightingsController < ApplicationController
 
   # GET /sightings/1/edit
   def edit
+  end
+
+  def get_events
+    @sightings = Sighting.all
+    events = []
+    @sightings.each do |sighting|
+      events << { id: sighting.id, title: "Sighting #" + sighting.id.to_s, start: sighting.date.to_s + " " + sighting.time.strftime("%H:%M"), url: Rails.application.routes.url_helpers.sighting_path(sighting.id), color: sighting.color}
+    end
+    render json: events.to_json
   end
 
   # POST /sightings
@@ -72,7 +81,7 @@ class SightingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sighting_params
-      params.require(:sighting).permit(:date, :time, :latitude, :longitude, :animal_id, :region)
+      params.require(:sighting).permit(:date, :time, :latitude, :longitude, :animal_id, :region, :color)
     end
 
     def animals_for_select

@@ -7,6 +7,15 @@ class AnimalsController < ApplicationController
     @animals = Animal.all
   end
 
+  def specific_get_events
+    @sightings = Animal.find(params[:animal_id]).sightings
+    events = []
+    @sightings.each do |sighting|
+      events << { id: sighting.id, title: "Sighting #" + sighting.id.to_s, start: sighting.date.to_s + "T" + sighting.time.strftime("%H:%M:%S"), url: Rails.application.routes.url_helpers.sighting_path(sighting.id), color: sighting.color}
+    end
+    render json: events.to_json
+  end
+
   # GET /animals/1
   # GET /animals/1.json
   def show

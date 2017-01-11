@@ -28,6 +28,10 @@
     <%= f.text_field :longitude %>
   </div>
   <div class="field">
+    <%= f.label :color %><br>
+    <%= f.color_field :color %>
+  </div>
+  <div class="field">
     <%= f.label :animal_id %><br>
     <%= select(:sighting, :animal_id, @animals_for_select) %>
   </div>

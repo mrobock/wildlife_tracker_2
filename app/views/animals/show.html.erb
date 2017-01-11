@@ -15,6 +15,8 @@
   <%= @animal.kingdom %>
 </p>
 
+<input type='hidden' value='<%=@animal.id%>' id="animal_id"/>
+
 <%= link_to 'Edit', edit_animal_path(@animal) %> |
 <%= link_to 'Back', animals_path %>
 
@@ -35,10 +37,12 @@
     <% @animal.sightings.each do |sighting| %>
       <tr>
         <td><%= sighting.date %></td>
-        <td><%= sighting.time %></td>
+        <td><%= sighting.time.strftime("%I:%M%p") %></td>
         <td><%= sighting.latitude %></td>
         <td><%= sighting.longitude %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<div id="animal_calendar"></div>

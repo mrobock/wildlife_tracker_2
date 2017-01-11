@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  resources :sightings
+  resources :sightings do
+    get :get_events, on: :collection
+  end
   get 'welcome/index'
 
-  resources :animals
+  resources :animals do
+    get :specific_get_events
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
